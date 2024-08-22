@@ -1,5 +1,6 @@
-import { card } from "../data/card.js";
+import { card , addToCard , updateCardQuantity } from "../data/card.js";
 import { products } from "../data/products.js";
+
 
 let productsHTML = '';
 
@@ -59,35 +60,16 @@ products.forEach((product)=>{
 `;
 })
 
+
+
 document.querySelector('.js-products-grid').innerHTML=productsHTML;
 document.querySelectorAll('.js-add-to-card').forEach((button)=>{
     button.addEventListener('click',()=>{
        const productId= button.dataset.productId;
 
-       let matchingItem;
+       addToCard(productId);
 
-       card.forEach((item)=>{
-        if(productId===item.productId){
-            matchingItem=item;
-        }
-       });
-
-       if(matchingItem){
-        matchingItem.quantity += 1;
-       }else{
-        card.push({
-            productId,
-            quantity:1
-           });
-       }
-
-       let cardQuantity = 0;
-
-       card.forEach((item)=>{
-        cardQuantity+=item.quantity;
-       })
-
-       document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
+       updateCardQuantity();
     })
 })
 
