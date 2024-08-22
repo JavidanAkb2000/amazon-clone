@@ -1,4 +1,4 @@
-export const card = [{
+export let card = [{
     productId:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity:2
 },
@@ -35,4 +35,14 @@ export function updateCardQuantity(){
     })
 
     document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
+}
+export function deleteFromCard(productId){
+    const newCart = [];
+    card.forEach((item)=>{
+        if(item.productId !== productId){
+            newCart.push(item);
+        }
+    });
+
+    card = newCart;
 }
