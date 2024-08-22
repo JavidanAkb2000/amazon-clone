@@ -1,3 +1,4 @@
+import { card } from "../data/card.js";
 
 let productsHTML = '';
 
@@ -88,3 +89,4 @@ document.querySelectorAll('.js-add-to-card').forEach((button)=>{
        document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
     })
 })
+
