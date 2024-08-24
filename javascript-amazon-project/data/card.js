@@ -62,3 +62,22 @@ export function deleteFromCard(productId){
     card = newCart;
     saveToStorage();
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+    let matchingItem;
+  
+    card.forEach((cardItem) => {
+      if (productId === cardItem.productId) {
+        matchingItem = cardItem;
+      }
+    });
+  
+    // Add a check to see if matchingItem was found
+    if (matchingItem) {
+      matchingItem.deliveryOptionId = deliveryOptionId;
+      saveToStorage();
+    } else {
+      console.error(`Product with ID ${productId} not found in the cart.`);
+    }
+  }
+  
