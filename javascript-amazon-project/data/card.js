@@ -1,4 +1,9 @@
-export let card = JSON.parse(localStorage.getItem('card'));
+export let card;
+
+loadFromStorage();
+
+export function loadFromStorage(){
+    card = JSON.parse(localStorage.getItem('card'));
 
 if(!card){
     card = [{
@@ -13,6 +18,7 @@ if(!card){
     }];
 }
 
+}
 
 
 function saveToStorage(){
