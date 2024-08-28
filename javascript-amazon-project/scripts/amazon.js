@@ -1,6 +1,8 @@
-import { card , addToCard , updateCardQuantity } from "../data/card.js";
+
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+import {card} from "../data/card-class.js"
+
 
 
 let productsHTML = '';
@@ -21,14 +23,14 @@ products.forEach((product)=>{
 
             <div class="product-rating-container">
                 <img class="product-rating-stars"
-                src="images/ratings/rating-${(product.rating.stars*10)}.png">
+                src="${product.getImageURL()}">
                 <div class="product-rating-count link-primary">
                 ${product.rating.count}
                 </div>
             </div>
 
             <div class="product-price">
-            $${formatCurrency(product.priceCents)}
+            $${product.getProductPrice()}
             </div>
 
             <div class="product-quantity-container">
@@ -68,9 +70,12 @@ document.querySelectorAll('.js-add-to-card').forEach((button)=>{
     button.addEventListener('click',()=>{
        const productId= button.dataset.productId;
 
-       addToCard(productId);
+       const quantitySelect = button.parentElement.querySelector('.product-quantity-container select');
+       const quantity = parseInt(quantitySelect.value,10);
 
-       updateCardQuantity();
+
+       card.addToCard(productId,quantity);
+       card.updateCardQuantity();
     })
 })
 

@@ -1,12 +1,13 @@
-import { card } from "../../data/card.js";
+
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { getProduct, products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
+import { card } from "../../data/card-class.js";
 
 export function renderPaymentSummary(){
     let productPriceCents = 0;
     let shippingPriceCents = 0;
-    card.forEach((cardItem)=>{
+    card.cardItems.forEach((cardItem)=>{
       const products = getProduct(cardItem.productId);
       productPriceCents += products.priceCents * cardItem.quantity;
       const deliveryOption = getDeliveryOption(cardItem.deliveryOptionId);

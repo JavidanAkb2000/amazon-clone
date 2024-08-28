@@ -1,14 +1,17 @@
-import {card, deleteFromCard, updateDeliveryOption} from '../../data/card.js';
+// import {card, deleteFromCard, updateDeliveryOption} from '../../data/card.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import {getProduct, products} from '../../data/products.js';
 import {formatCurrency} from './../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+import { card } from '../../data/card-class.js';
+
+
 
 export function renderOrderSummary(){
   let cartSummaryHTML = '';
 
-card.forEach((cartItem) => {
+  card.cardItems.forEach((cartItem) => {
   const productId = cartItem.productId;
 
   const matchingProduct = getProduct(productId);
@@ -40,7 +43,7 @@ card.forEach((cartItem) => {
               ${matchingProduct.name}
             </div>
             <div class="product-price">
-              $${formatCurrency(matchingProduct.priceCents)}
+              $${matchingProduct.getProductPrice()}
             </div>
             <div class="product-quantity" js-product-quantity-${matchingProduct.id}>
               <span>
@@ -109,7 +112,7 @@ card.forEach((cartItem) => {
     .forEach((link) => {
       link.addEventListener('click', () => {
         const productId = link.dataset.productId;
-        deleteFromCard(productId);
+        card.deleteFromCard(productId);
 
         const container = document.querySelector(
           `.js-cart-item-container-${productId}`
@@ -124,7 +127,7 @@ card.forEach((cartItem) => {
     .forEach((element)=>{
       element.addEventListener('click',()=>{
         const {productId, deliveryOptionId} = element.dataset;
-        updateDeliveryOption(productId,deliveryOptionId);
+        card.updateDeliveryOption(productId,deliveryOptionId);
         renderOrderSummary();
         renderPaymentSummary();
       });

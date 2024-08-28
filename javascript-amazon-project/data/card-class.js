@@ -1,5 +1,5 @@
 class Card{
-    cartItems;
+    cardItems;
     #localStorageKey;
 
     constructor(localStorageKey){
@@ -30,7 +30,7 @@ class Card{
         localStorage.setItem(this.#localStorageKey,JSON.stringify(this.cardItems));
     }
 
-    addToCard(productId){
+    addToCard(productId,quantity=1){
         let matchingItem;
     
         this.cardItems.forEach((cardItem)=>{
@@ -40,11 +40,11 @@ class Card{
         });
     
         if(matchingItem){
-         matchingItem.quantity += 1;
+         matchingItem.quantity += quantity;
         }else{
          this.cardItems.push({
              productId,
-             quantity:1,
+             quantity,
              deliveryOptionId:'1'
             });
         }
@@ -96,13 +96,8 @@ class Card{
 
 
 
-const card = new Card('card-oop');
-const businessCart = new Card('business-oop');
-
-
-
-console.log(card);
-console.log(businessCart);
+export const card = new Card('card-oop');
+// console.log(card);
 
 
 

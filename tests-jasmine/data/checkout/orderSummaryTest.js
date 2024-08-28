@@ -1,3 +1,4 @@
+import { card } from "../../../javascript-amazon-project/data/card-class.js";
 import { loadFromStorage } from "../../../javascript-amazon-project/data/card.js";
 import { renderOrderSummary } from "../../../javascript-amazon-project/scripts/checkout/orderSummary.js";
 
@@ -25,8 +26,8 @@ describe('test suite: renderOrderSummary', () => {
             ]);
         });
 
-        loadFromStorage();
-        renderOrderSummary();
+        card.loadFromStorage();
+        card.renderOrderSummary();
 
         expect(document.querySelectorAll('.js-cart-item-container-test').length).toEqual(2);
         
