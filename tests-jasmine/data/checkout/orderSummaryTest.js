@@ -27,7 +27,7 @@ describe('test suite: renderOrderSummary', () => {
         });
 
         card.loadFromStorage();
-        card.renderOrderSummary();
+        renderOrderSummary();
 
         expect(document.querySelectorAll('.js-cart-item-container-test').length).toEqual(2);
         

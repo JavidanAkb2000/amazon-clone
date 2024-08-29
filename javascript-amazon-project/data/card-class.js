@@ -5,10 +5,10 @@ class Card{
     constructor(localStorageKey){
         
         this.#localStorageKey = localStorageKey;
-        this.#loadFromStorage();
+        this.loadFromStorage();
     }
 
-    #loadFromStorage(){
+    loadFromStorage(){
         this.cardItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if(!this.cardItems){
