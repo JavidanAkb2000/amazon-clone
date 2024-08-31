@@ -13,13 +13,18 @@ import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 
 async function loadPage(){
    
-   await loadProductsFetch();
+   try {
+    await loadProductsFetch();
 
-   await new Promise((resolve)=>{
+   await new Promise((resolve,reject)=>{
     loadCard(()=>{
+        //reject();
         resolve();
     });
 });
+   } catch (error) {
+    console.log('Unexpected error please try again later',error);
+   }
 
 renderOrderSummary();
 renderPaymentSummary();
