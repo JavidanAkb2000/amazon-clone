@@ -11,10 +11,31 @@ import { renderPaymentSummary } from "./checkout/paymentSummary.js";
    
 // })
 
+async function loadPage(){
+   
+   await loadProductsFetch();
+
+   await new Promise((resolve)=>{
+    loadCard(()=>{
+        resolve();
+    });
+});
+
+renderOrderSummary();
+renderPaymentSummary();
+
+}
+
+loadPage();
 
 
+/*
 Promise.all([
-    loadProductsFetch(),
+    new Promise((resolve)=>{
+      loadProducts(()=>{
+        resolve();
+        })    
+    }),
     new Promise((resolve)=>{
         loadCard(()=>{
             resolve();
@@ -25,3 +46,5 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary();
 })
+
+*/
