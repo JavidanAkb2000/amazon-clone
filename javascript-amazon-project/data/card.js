@@ -87,3 +87,17 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
     }
   }
   
+  export function loadCard(loadProductsGrid){
+    const xhr = new XMLHttpRequest();
+  
+    xhr.addEventListener('load',()=>{
+    console.log(xhr.response);
+  
+
+    loadProductsGrid();
+    });
+    xhr.open('GET','https://supersimplebackend.dev/cart');
+    xhr.send();
+  }
+
+ 

@@ -72,7 +72,7 @@ export function loadProducts(loadProductsGrid){
     return new Product(productDetails);
   });
 
-  console.log('loaded products');
+  // console.log('loaded products');
  loadProductsGrid();
   });
   xhr.open('GET','https://supersimplebackend.dev/products');
