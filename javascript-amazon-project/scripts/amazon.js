@@ -1,9 +1,11 @@
 
-import { products } from "../data/products.js";
+import { loadProducts, products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
-import {card} from "../data/card-class.js"
+import {card} from "../data/card-class.js";
 
+loadProducts(loadProductsHTML);
 
+function loadProductsHTML(){
 
 let productsHTML = '';
 
@@ -81,3 +83,4 @@ document.querySelectorAll('.js-add-to-card').forEach((button)=>{
     })
 })
 
+}
