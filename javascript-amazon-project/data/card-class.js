@@ -97,7 +97,7 @@ class Card{
 
 
 export const card = new Card('card-oop');
-// console.log(card);
+ console.log(card);
 
 
 
